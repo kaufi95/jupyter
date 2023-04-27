@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  app:
+  lab:
     image: jupyterlab
     ports:
       - "8888:8888"
@@ -9,3 +9,12 @@ services:
       - ./exchange:/opt/exchange
       - ./config:/etc/jupyter
       - ./notebooks_backup:/opt/notebooks_backup
+  hub:
+    image: jupyterhub/jupyterhub
+    ports:
+      - "8000:8000"
+    #volumes:
+      #- ./notebooks:/opt/source
+      #- ./exchange:/opt/exchange
+      #- ./config:/etc/jupyter
+      #- ./notebooks_backup:/opt/notebooks_backup

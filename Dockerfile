@@ -1,6 +1,6 @@
 FROM continuumio/miniconda3
 
-RUN conda install -y jupyterlab jupyterhub nbgrader xeus-cling -c conda-forge
+RUN conda install -y jupyterlab nbgrader xeus-cling -c conda-forge
 
 RUN mkdir -p /opt/exchange
 RUN chmod ugo+rw /opt/exchange
