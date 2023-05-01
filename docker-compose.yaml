@@ -7,14 +7,12 @@ services:
     volumes:
       - ./notebooks:/opt/source
       - ./exchange:/opt/exchange
-      - ./config:/etc/jupyter
-      - ./notebooks_backup:/opt/notebooks_backup
+      - ./config/lab:/etc/jupyter
+    working_dir: /opt
   hub:
     image: jupyterhub/jupyterhub
     ports:
       - "8000:8000"
-    #volumes:
-      #- ./notebooks:/opt/source
-      #- ./exchange:/opt/exchange
-      #- ./config:/etc/jupyter
-      #- ./notebooks_backup:/opt/notebooks_backup
+    volumes:
+      - ./config/hub:/etc/jupyterhub
+    working_dir: /opt
