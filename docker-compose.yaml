@@ -1,18 +1,43 @@
 version: "3.9"
 services:
-  lab:
-    image: jupyterlab
-    ports:
-      - "8888:8888"
-    volumes:
-      - ./notebooks:/opt/source
-      - ./exchange:/opt/exchange
-      - ./config/lab:/etc/jupyter
-    working_dir: /opt
+  # lab:
+  #   build: ./lab
+  #   image: jupyterlab
+  #   ports:
+  #     - "8888:8888"
+  #   volumes:
+  #     - ./notebooks:/home/jovyan/source
+  #     - ./exchange:/home/jovyan/exchange
+  #     - ./lab/nbgrader_config.py:/etc/jupyter/nbgrader_config.py
+  # lab-student:
+  #   build: ./student
+  #   image: jupyterlab-student
+  #   ports:
+  #     - "8889:8888"
+  #   volumes:
+  #     - ./notebooks:/home/jovyan/notebooks
   hub:
-    image: jupyterhub/jupyterhub
+    build: ./hub
+    image: jupyterhub
+    hostname: jupyterhub
     ports:
       - "8000:8000"
     volumes:
-      - ./config/hub:/etc/jupyterhub
-    working_dir: /opt
+      - ./hub/jupyterhub_config.py:/etc/jupyterhub/jupyterhub_config.py
+      # - ./exchange:/opt/exchange
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/srv/jupyterhub/data
+    # working_dir: /opt
+    networks:
+      - jupyterhub-network
+    environment:
+      DOCKER_NETWORK_NAME: jupyterhub-network
+      DOCKER_NOTEBOOK_DIR: /home/jovyan/work
+      SINGLEUSER_IMAGE: jupyterlab-singleuser
+
+volumes:
+  jupyterhub_data:
+
+networks:
+  jupyterhub:
+    name: jupyterhub-network
