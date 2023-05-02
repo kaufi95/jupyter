@@ -17,6 +17,7 @@ services:
       DOCKER_NETWORK_NAME: jupyterhub-network
       DOCKER_NOTEBOOK_DIR: /home/jovyan/work
       SINGLEUSER_IMAGE: jupyterlab-singleuser
+      IP_ADDRESS: "172.22.0.2"
 
 volumes:
   jupyterhub_data:

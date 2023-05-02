@@ -2,6 +2,13 @@ from dockerspawner import DockerSpawner
 from nativeauthenticator import NativeAuthenticator
 import os
 
+# Fetch env variables
+
+notebook_dir = os.environ.get("DOCKER_NOTEBOOK_DIR")
+network_name = os.environ["DOCKER_NETWORK_NAME"]
+image = os.environ["SINGLEUSER_IMAGE"]
+ip = os.environ["IP_ADDRESS"]
+
 # Configuration file for jupyterhub.
 
 c = get_config()  # noqa
@@ -9,18 +16,15 @@ c = get_config()  # noqa
 c.Spawner.http_timeout = 60
 
 c.JupyterHub.log_level = "DEBUG"
-c.JupyterHub.hub_ip = "172.22.0.2"
-c.JupyterHub.hub_connect_ip = "172.22.0.2"
+c.JupyterHub.hub_ip = "0.0.0.0"
+c.JupyterHub.hub_connect_ip = ip
 
 c.JupyterHub.authenticator_class = NativeAuthenticator
 c.GenericOAuthenticator.enable_auth_state = True
 
 c.JupyterHub.spawner_class = DockerSpawner
 
-notebook_dir = os.environ.get("DOCKER_NOTEBOOK_DIR")
-network_name = os.environ["DOCKER_NETWORK_NAME"]
-image = os.environ["SINGLEUSER_IMAGE"]
-
+# DockerSpawner
 c.DockerSpawner.notebook_dir = notebook_dir
 c.DockerSpawner.network_name = network_name
 c.DockerSpawner.image = image
@@ -37,7 +41,7 @@ c.Authenticator.admin_users = {"myadmin"}
 c.NativeAuthenticator.open_signup = True
 c.NativeAuthenticator.create_system_users = True
 
-# default config below
+# Default config of Jupyterhub below
 
 # ------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
