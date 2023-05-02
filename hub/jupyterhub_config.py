@@ -6,12 +6,11 @@ import os
 
 c = get_config()  # noqa
 
-c.Spawner.http_timeout = 300
-# c.Spawner.default_url = "/lab"
+c.Spawner.http_timeout = 60
 
 c.JupyterHub.log_level = "DEBUG"
-c.JupyterHub.hub_ip = "172.18.0.2"
-c.JupyterHub.hub_connect_ip = "172.18.0.2"
+c.JupyterHub.hub_ip = "172.22.0.2"
+c.JupyterHub.hub_connect_ip = "172.22.0.2"
 
 c.JupyterHub.authenticator_class = NativeAuthenticator
 c.GenericOAuthenticator.enable_auth_state = True
@@ -19,17 +18,13 @@ c.GenericOAuthenticator.enable_auth_state = True
 c.JupyterHub.spawner_class = DockerSpawner
 
 notebook_dir = os.environ.get("DOCKER_NOTEBOOK_DIR")
-c.DockerSpawner.notebook_dir = notebook_dir
-
-# c.Spawner.default_url = "/home/{username}"
-# c.Spawner.notebook_dir = "/home"
-
 network_name = os.environ["DOCKER_NETWORK_NAME"]
 image = os.environ["SINGLEUSER_IMAGE"]
 
+c.DockerSpawner.notebook_dir = notebook_dir
 c.DockerSpawner.network_name = network_name
+c.DockerSpawner.image = image
 c.DockerSpawner.volumes = {"jupyterhub-user-{username}": notebook_dir}
-c.DockerSpawner.image = "jupyterlab-singleuser"
 c.DockerSpawner.remove = True
 c.DockerSpawner.use_internal_ip = True
 

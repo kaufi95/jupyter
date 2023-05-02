@@ -1,4 +1,4 @@
-FROM jupyterhub/jupyterhub:4.0.0
+FROM jupyterhub/jupyterhub:3.1.1
 
 RUN pip install --no-cache dockerspawner oauthenticator jupyterhub-nativeauthenticator
 

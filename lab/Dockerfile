@@ -1,18 +1,16 @@
-FROM jupyter/minimal-notebook
+FROM jupyter/base-notebook
+
+RUN pip3 install jupyterhub==3.1.1
 
 # to unshow (base) in terminal
 RUN conda config --set changeps1 false
 
-# install nbgrader and xeus-cling from conda-forge
+# install nbgrader from conda-forge
 RUN conda install -y -c conda-forge nbgrader
-RUN conda install -y -c conda-forge xeus-cling
 
-# make the exchage directory for nbgrader if it doesn't exist
-RUN mkdir -p /home/jovyan/exchange
+# install xeus-cling from conda-forge
+RUN conda install -y -c conda-forge xeus-cling 
 
 # uninstall not necessery kernels
 RUN jupyter kernelspec uninstall xcpp14 -y
 RUN jupyter kernelspec uninstall xcpp17 -y
-
-# run the app
-CMD jupyter-lab --allow-root --ip=* --no-browser --ServerApp.token=''

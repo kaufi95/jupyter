@@ -1,21 +1,5 @@
 version: "3.9"
 services:
-  # lab:
-  #   build: ./lab
-  #   image: jupyterlab
-  #   ports:
-  #     - "8888:8888"
-  #   volumes:
-  #     - ./notebooks:/home/jovyan/source
-  #     - ./exchange:/home/jovyan/exchange
-  #     - ./lab/nbgrader_config.py:/etc/jupyter/nbgrader_config.py
-  # lab-student:
-  #   build: ./student
-  #   image: jupyterlab-student
-  #   ports:
-  #     - "8889:8888"
-  #   volumes:
-  #     - ./notebooks:/home/jovyan/notebooks
   hub:
     build: ./hub
     image: jupyterhub
@@ -27,7 +11,6 @@ services:
       # - ./exchange:/opt/exchange
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/srv/jupyterhub/data
-    # working_dir: /opt
     networks:
       - jupyterhub-network
     environment:
@@ -39,5 +22,5 @@ volumes:
   jupyterhub_data:
 
 networks:
-  jupyterhub:
+  jupyterhub-network:
     name: jupyterhub-network
