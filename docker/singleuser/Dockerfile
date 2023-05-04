@@ -14,3 +14,5 @@ RUN conda install -y -c conda-forge xeus-cling
 # uninstall not necessery kernels
 RUN jupyter kernelspec uninstall xcpp14 -y
 RUN jupyter kernelspec uninstall xcpp17 -y
+
+COPY ./nbgrader_config.py /etc/jupyter/nbgrader_config.py

@@ -41,6 +41,16 @@ c.Authenticator.admin_users = {"myadmin"}
 c.NativeAuthenticator.open_signup = True
 c.NativeAuthenticator.create_system_users = True
 
+# ngshare for exchanging assignments
+
+c.JupyterHub.services.append(
+    {
+        "name": "ngshare",
+        "url": "http://127.0.0.1:10101",
+        "command": ["python3", "-m", "ngshare", "--admins", "admin1"],
+    }
+)
+
 # Default config of Jupyterhub below
 
 # ------------------------------------------------------------------------------
