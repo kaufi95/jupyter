@@ -3,18 +3,16 @@ from nativeauthenticator import NativeAuthenticator
 import os
 
 # Fetch env variables
-
 notebook_dir = os.environ.get("DOCKER_NOTEBOOK_DIR")
 network_name = os.environ["DOCKER_NETWORK_NAME"]
 image = os.environ["SINGLEUSER_IMAGE"]
 ip = os.environ["IP_ADDRESS"]
 
-# Configuration file for jupyterhub.
+# configuration for jupyterhub
 
-c = get_config()  # noqa
+c = get_config()
 
 c.Spawner.http_timeout = 60
-
 c.JupyterHub.log_level = "DEBUG"
 c.JupyterHub.hub_ip = "0.0.0.0"
 c.JupyterHub.hub_connect_ip = ip
@@ -30,7 +28,12 @@ c.DockerSpawner.network_name = network_name
 c.DockerSpawner.image = image
 c.DockerSpawner.volumes = {"jupyterhub-user-{username}": notebook_dir}
 c.DockerSpawner.remove = True
-c.DockerSpawner.use_internal_ip = True
+c.DockerSpawner.environments = {
+    "NB_USER": "{username}",
+    "CHOWN_HOME": "yes",
+    "CHOWN_EXTRA": notebook_dir,
+    "CHOWN_EXTRA_OPTS": "-R",
+}
 
 # Persistence
 c.JupyterHub.db_url = "sqlite:///data/jupyterhub.sqlite"
@@ -42,7 +45,6 @@ c.NativeAuthenticator.open_signup = True
 c.NativeAuthenticator.create_system_users = True
 
 # ngshare for exchanging assignments
-
 c.JupyterHub.services.append(
     {
         "name": "ngshare",
