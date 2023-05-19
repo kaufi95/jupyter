@@ -1,6 +1,6 @@
 FROM jupyterhub/jupyterhub:3.1.1
 
-# install ngshare and ngshare_exchange and add user
+# install ngshare_exchange
 RUN python3 -m pip install ngshare
 
 # install dockerspawner and authenticators
