@@ -9,25 +9,25 @@ services:
       - ./notebooks:/home/jovyan/source
       - ./exchange:/home/jovyan/exchange
       - ./docker/lab/nbgrader_config.py:/etc/jupyter/nbgrader_config.py
-  hub:
-    build: ./docker/hub
-    image: jupyterhub
-    hostname: jupyterhub
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./docker/hub/jupyterhub_config.py:/etc/jupyterhub/jupyterhub_config.py
-      - ./data/jupyterhub:/srv/jupyterhub/data
-      - ./data/ngshare:/srv/ngshare/:rw
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - jupyterhub-network
-    environment:
-      DOCKER_NETWORK_NAME: jupyterhub-network
-      DOCKER_NOTEBOOK_DIR: /home/jovyan
-      SINGLEUSER_IMAGE: jupyterlab-singleuser
-      IP_ADDRESS: "172.22.0.2"
+#   hub:
+#     build: ./docker/hub
+#     image: jupyterhub
+#     hostname: jupyterhub
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#       - ./docker/hub/jupyterhub_config.py:/etc/jupyterhub/jupyterhub_config.py
+#       - ./data/jupyterhub:/srv/jupyterhub/data
+#       - ./data/ngshare:/srv/ngshare/:rw
+#       - /var/run/docker.sock:/var/run/docker.sock
+#     networks:
+#       - jupyterhub-network
+#     environment:
+#       DOCKER_NETWORK_NAME: jupyterhub-network
+#       DOCKER_NOTEBOOK_DIR: /home/jovyan
+#       SINGLEUSER_IMAGE: jupyterlab-singleuser
+#       IP_ADDRESS: "172.22.0.2"
 
-networks:
-  jupyterhub-network:
-    name: jupyterhub-network
+# networks:
+#   jupyterhub-network:
+#     name: jupyterhub-network
