@@ -1,6 +1,6 @@
 FROM jupyter/base-notebook
 
-RUN pip3 install jupyterhub==3.0.0
+RUN pip3 install jupyterhub==3.1.1
 
 # to unshow (base) in terminal
 RUN conda config --set changeps1 false
@@ -23,5 +23,5 @@ USER root
 RUN rm -rf /home/jovyan/work
 RUN ln -s /opt/conda/bin/ngshare-course-management /usr/local/bin/cm
 
-# copy nbgrader_config.py
-COPY ./nbgrader_config.py /etc/jupyter/nbgrader_config.py
+# # copy nbgrader_config.py
+# COPY ./nbgrader_config.py /etc/jupyter/nbgrader_config.py

@@ -1,4 +1,4 @@
-FROM jupyterhub/jupyterhub:3.0.0
+FROM jupyterhub/jupyterhub:3.1.1
 
 # install ngshare_exchange
 RUN python3 -m pip install ngshare
