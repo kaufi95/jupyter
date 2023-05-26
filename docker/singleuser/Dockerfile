@@ -1,6 +1,6 @@
 FROM jupyter/base-notebook
 
-RUN pip3 install jupyterhub==3.1.1
+RUN pip3 install jupyterhub==3.0.0
 
 # to unshow (base) in terminal
 RUN conda config --set changeps1 false

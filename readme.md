@@ -22,17 +22,33 @@
 2. go to `localhost:8000`
 3. sign up a new users with usernames `admin1`, `instructor1`, `user1`
 4. login with the admin1 user
-5. create a new course by opening a terminal in container and type `cm create_course SP`
-6. add the instructor to the course by typing `cm add_instructor SP -f instructor1 -l instructor1 -e instructor1@mail`
-7. add the student to the course by typing `cm add_student SP -f user1 -l user1 -e user1@mail`
-8. login with the instructor1 user
-9. create a folder called `source`. Insert a folder called `SP` and add a notebook to it
-10. open formgrader and generate and release the assignment
-11. login with the user1 user
-12. fetch the assignment and complete it
-13. submit the assignment
-14. login with the instructor1 user
-15. grade the assignment and generate and release the feedback
-16. login with the user1 user
-17. fetch the feedback
-18. logout
+5. create a new course by opening a terminal in the container and type `cm create_course SP`
+6. add the instructor to the course by typing `cm add_instructor SP instructor1 -f instructor1 -l instructor1 -e instructor1@mail`
+7. login with the instructor1 user
+8. add the student to the course by typing `cm add_student SP user1 -f user1 -l user1 -e user1@mail` in a terminal in the container
+9. create a file called `nbgrader_config.py`in the root directory and insert `c.CourseDirectory.course_id = "SP"`
+10. create a folder called `source`. Insert a folder called `SP` and add a notebook to it
+11. open formgrader and generate and release the assignment
+12. login with the user1 user
+13. fetch the assignment and complete it
+14. submit the assignment
+15. login with the instructor1 user
+16. grade the assignment and generate and release the feedback
+17. login with the user1 user
+18. fetch the feedback
+19. logout
+
+## Infromation
+
+To view the courses, assigned instructors and students, login with the admin1 user and go to the following links:
+
+- http://localhost:8000/services/ngshare/courses
+- http://localhost:8000/services/ngshare/instructors/SP
+- http://localhost:8000/services/ngshare/students/SP
+
+## TODO
+
+- Fix issue with .ipynb_checkpoint files, so nbgrader does not throw an error when fetching assignments and generates the needed timestamp.txt file
+- Fix issue with IP_ADDRESS variable in docker-compose.yaml file
+- Fix issue with ip address in nbgrader_config.py file
+- Fix issue with nbgrader extension being enabled by default for all users
