@@ -48,7 +48,8 @@ To view the courses, assigned instructors and students, login with the admin1 us
 
 ## TODO
 
-- Fix issue with .ipynb_checkpoint files, so nbgrader does not throw an error when fetching assignments and generates the needed timestamp.txt file
+- Fix issue with .ipynb_checkpoint files, so nbgrader does not throw an error when fetching assignments and generates the needed timestamp.txt file and releases the feedback to the students
 - Fix issue with IP_ADDRESS variable in docker-compose.yaml file
 - Fix issue with ip address in nbgrader_config.py file
 - Fix issue with nbgrader extension being enabled by default for all users
+- Fix error log (admin1)
