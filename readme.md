@@ -49,7 +49,7 @@ To view the courses, assigned instructors and students, login with the admin1 us
 
 ## TODO
 
-- Fix issue with .ipynb_checkpoint files, so nbgrader does not throw an error when fetching assignments
+- Fix issue with .ipynb_checkpoint files, so nbgrader does not throw an error when fetching assignments (https://github.com/LibreTexts/ngshare/issues/161)
 - Fix issue with fetching feedbach
 - Fix issue with IP_ADDRESS variable in docker-compose.yaml file
 - Fix issue with ip address in nbgrader_config.py file
