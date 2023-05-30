@@ -63,6 +63,8 @@ To view the courses, assigned instructors and students, login with the admin1 us
 - http://localhost:8000/services/ngshare/instructors/SP
 - http://localhost:8000/services/ngshare/students/SP
 
+To see other available endpoints, head to http://localhost:8000/services/ngshare/ (not all endpoints are GET-endpoints)
+
 ## TODO
 
 - Fix issue with .ipynb_checkpoint files, so nbgrader does not throw an error when fetching assignments (https://github.com/LibreTexts/ngshare/issues/161)
