@@ -18,7 +18,7 @@ RUN jupyter kernelspec uninstall xcpp17 -y
 # install ngshare_exchange
 RUN python3 -m pip install ngshare_exchange
 
-# create symlink for ngshare-course-management -> cm
+# remove work folder and create symlink for ngshare-course-management -> cm
 USER root
 RUN rm -rf /home/jovyan/work
 RUN ln -s /opt/conda/bin/ngshare-course-management /usr/local/bin/cm
